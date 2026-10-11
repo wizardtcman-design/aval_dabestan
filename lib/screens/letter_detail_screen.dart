@@ -48,7 +48,7 @@ class _LetterDetailScreenState extends State<LetterDetailScreen> {
                 width: 160,
                 height: 160,
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.12),
+                  color: AppColors.primary.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(32),
                 ),
                 child: Center(

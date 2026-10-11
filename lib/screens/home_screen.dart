@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget {
               Text(
                 'همه‌چیز داخل خود اپلیکیشن است و بدون اینترنت کار می‌کند.',
                 style: textTheme.bodyMedium?.copyWith(
-                  color: AppColors.ink.withOpacity(0.55),
+                  color: AppColors.ink.withValues(alpha: 0.55),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -122,7 +122,7 @@ class _MenuCard extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: color.withOpacity(0.25)),
+              border: Border.all(color: color.withValues(alpha: 0.25)),
             ),
             child: Row(
               children: [
@@ -130,7 +130,7 @@ class _MenuCard extends StatelessWidget {
                   width: 56,
                   height: 56,
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.15),
+                    color: color.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(18),
                   ),
                   child: Icon(icon, color: color, size: 30),
@@ -145,7 +145,7 @@ class _MenuCard extends StatelessWidget {
                       Text(
                         subtitle,
                         style: textTheme.bodyMedium?.copyWith(
-                          color: AppColors.ink.withOpacity(0.65),
+                          color: AppColors.ink.withValues(alpha: 0.65),
                         ),
                       ),
                     ],

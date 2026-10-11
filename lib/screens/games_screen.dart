@@ -10,8 +10,8 @@ class GamesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
-    final List<({String title, String subtitle, IconData icon, Color color})>
-        games = const <({String title, String subtitle, IconData icon, Color color})>[
+    const List<({String title, String subtitle, IconData icon, Color color})>
+        games = <({String title, String subtitle, IconData icon, Color color})>[
       (
         title: 'پیدا کن',
         subtitle: 'حرف یا عدد درست را پیدا کن',
@@ -52,7 +52,7 @@ class GamesScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: game.color.withOpacity(0.25)),
+                border: Border.all(color: game.color.withValues(alpha: 0.25)),
               ),
               child: Row(
                 children: [
@@ -60,7 +60,7 @@ class GamesScreen extends StatelessWidget {
                     width: 56,
                     height: 56,
                     decoration: BoxDecoration(
-                      color: game.color.withOpacity(0.15),
+                      color: game.color.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(18),
                     ),
                     child: Icon(game.icon, color: game.color, size: 28),
@@ -75,14 +75,14 @@ class GamesScreen extends StatelessWidget {
                         Text(
                           game.subtitle,
                           style: textTheme.bodyMedium?.copyWith(
-                            color: AppColors.ink.withOpacity(0.65),
+                            color: AppColors.ink.withValues(alpha: 0.65),
                           ),
                         ),
                       ],
                     ),
                   ),
                   Chip(
-                    backgroundColor: game.color.withOpacity(0.12),
+                    backgroundColor: game.color.withValues(alpha: 0.12),
                     label: Text(
                       'به‌زودی',
                       style: TextStyle(

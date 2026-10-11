@@ -144,7 +144,7 @@ class _NumbersScreenState extends State<NumbersScreen> {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: color.withOpacity(0.35)),
+                border: Border.all(color: color.withValues(alpha: 0.35)),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -163,7 +163,7 @@ class _NumbersScreenState extends State<NumbersScreen> {
                     number.word,
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppColors.ink.withOpacity(0.65),
+                      color: AppColors.ink.withValues(alpha: 0.65),
                     ),
                   ),
                 ],

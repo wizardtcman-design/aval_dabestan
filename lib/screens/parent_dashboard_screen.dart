@@ -56,8 +56,6 @@ class _ParentDashboardScreenState extends State<ParentDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-
     return Scaffold(
       appBar: AppBar(title: const Text('داشبورد والدین')),
       body: _buildBody(context),
@@ -96,7 +94,7 @@ class _ParentDashboardScreenState extends State<ParentDashboardScreen> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: AppColors.primary.withOpacity(0.25)),
+            border: Border.all(color: AppColors.primary.withValues(alpha: 0.25)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +124,7 @@ class _ParentDashboardScreenState extends State<ParentDashboardScreen> {
                 child: LinearProgressIndicator(
                   value: _letterProgressPercent,
                   minHeight: 12,
-                  backgroundColor: AppColors.primary.withOpacity(0.15),
+                  backgroundColor: AppColors.primary.withValues(alpha: 0.15),
                   color: AppColors.primary,
                 ),
               ),
@@ -161,7 +159,7 @@ class _ParentDashboardScreenState extends State<ParentDashboardScreen> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: AppColors.mint.withOpacity(0.35)),
+            border: Border.all(color: AppColors.mint.withValues(alpha: 0.35)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +178,7 @@ class _ParentDashboardScreenState extends State<ParentDashboardScreen> {
               Text(
                 'هر حرف فقط بعد از یادگیری کامل حرف قبلی باز می‌شود. این روش باعث می‌شود کودک بدون عجله و به‌ترتیب پیش برود. پیشرفت فقط روی خود گوشی ذخیره می‌شود و هیچ داده‌ای ارسال نمی‌گردد.',
                 style: textTheme.bodyMedium?.copyWith(
-                  color: AppColors.ink.withOpacity(0.7),
+                  color: AppColors.ink.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -211,7 +209,7 @@ class _StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Column(
         children: [
@@ -230,7 +228,7 @@ class _StatCard extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: 12,
-              color: AppColors.ink.withOpacity(0.6),
+              color: AppColors.ink.withValues(alpha: 0.6),
             ),
             textAlign: TextAlign.center,
           ),

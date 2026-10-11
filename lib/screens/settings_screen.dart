@@ -52,7 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(24),
                     border:
-                        Border.all(color: AppColors.primary.withOpacity(0.25)),
+                        Border.all(color: AppColors.primary.withValues(alpha: 0.25)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(24),
                     border:
-                        Border.all(color: AppColors.coral.withOpacity(0.25)),
+                        Border.all(color: AppColors.coral.withValues(alpha: 0.25)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(24),
                     border:
-                        Border.all(color: AppColors.mint.withOpacity(0.35)),
+                        Border.all(color: AppColors.mint.withValues(alpha: 0.35)),
                   ),
                   child: Row(
                     children: [
@@ -139,7 +139,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             Text(
                               'همه صداها و تصویرها داخل خود اپلیکیشن هستند؛ همیشه و همه‌جا بدون اینترنت کار می‌کند.',
                               style: textTheme.bodyMedium?.copyWith(
-                                color: AppColors.ink.withOpacity(0.65),
+                                color: AppColors.ink.withValues(alpha: 0.65),
                               ),
                             ),
                           ],

@@ -142,7 +142,7 @@ class _LetterTile extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: color.withOpacity(0.35)),
+              border: Border.all(color: color.withValues(alpha: 0.35)),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -161,7 +161,7 @@ class _LetterTile extends StatelessWidget {
                   letter.name,
                   style: TextStyle(
                     fontSize: 12,
-                    color: AppColors.ink.withOpacity(0.6),
+                    color: AppColors.ink.withValues(alpha: 0.6),
                   ),
                 ),
                 const SizedBox(height: 4),

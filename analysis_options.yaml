@@ -1,1 +1,7 @@
 include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    # فایل‌های تست تولیدشده توسط `flutter create` در CI به MyApp ارجاع می‌دهند
+    # و جزیی از سورس پروژه نیستند؛ از تحلیل خارج می‌شوند.
+    - test/**
