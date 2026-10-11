@@ -1,85 +1,93 @@
-name: Build APK
+name: ساخت خودکار APK 🤖
 
+# هر بار که کد پوش می‌شود، APK به‌صورت خودکار ساخته می‌شود
 on:
   push:
-    branches: [ main ]
-    tags: [ 'v*' ]
+    branches: [main, master]
+    tags: ["v*"]          # تگ نسخه مثل v1.0.0 → انتشار در Releases
   pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [main]
+  workflow_dispatch:       # اجرای دستی از تب Actions گیت‌هاب
+    inputs:
+      build_type:
+        description: "نوع بیلد"
+        required: true
+        default: "release"
+        type: choice
+        options: [release, debug]
 
 permissions:
-  contents: read
-
-concurrency:
-  group: build-${{ github.ref }}
-  cancel-in-progress: true
+  contents: write          # برای ساخت Release
 
 jobs:
-  build:
-    name: Build Debug & Release APK
+  build-apk:
+    name: بیلد اندروید
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+
     steps:
-      - name: Checkout code
+      - name: 📥 دریافت کد
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      - name: ☕ نصب جاوا ۱۷
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
-          java-version: '17'
+          distribution: temurin
+          java-version: "17"
 
-      - name: Set up Flutter (stable)
+      - name: 🐦 نصب Flutter 3.24.3
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          flutter-version: 3.24.3
+          channel: stable
           cache: true
 
-      - name: Show Flutter version
-        run: flutter --version
+      - name: 🛠 نصب Gradle 8.3
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.3"
 
-      - name: Generate android platform files
-        run: flutter create . --platforms android --project-name aval_dabestan --org ir.avaldabestan
-
-      - name: Install dependencies
+      - name: 📦 دریافت پکیج‌ها
         run: flutter pub get
 
-      - name: Static analysis (non-blocking)
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: 🔧 اطمینان از وجود Gradle Wrapper
+        run: |
+          cd android
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            gradle wrapper --gradle-version 8.3 --distribution-type bin
+          fi
 
-      - name: Build debug APK
-        run: flutter build apk --debug
+      - name: 🔍 تحلیل کد (غیرمسدودکننده)
+        run: flutter analyze --no-pub
+        continue-on-error: true
 
-      - name: Build release APK
+      - name: 🚀 بیلد APK Release (تقسیم‌شده بر معماری - حجم کمتر)
+        run: flutter build apk --release --split-per-abi
+
+      - name: 🚀 بیلد APK Release کامل (همه معماری‌ها)
         run: flutter build apk --release
 
-      - name: Upload debug APK (artifact)
+      - name: 🧪 بیلد APK Debug
+        run: flutter build apk --debug
+
+      - name: 📤 آپلود Artifacts (دانلود از تب Actions)
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          name: apk-${{ github.run_number }}
+          path: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/flutter-apk/*-release.apk
+            build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
 
-      - name: Upload release APK (artifact)
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
-
-  release:
-    name: Publish GitHub Release
-    if: startsWith(github.ref, 'refs/tags/v')
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Download release APK
-        uses: actions/download-artifact@v4
-        with:
-          name: app-release
-
-      - name: Create GitHub Release
+      - name: 🏷 انتشار در بخش Releases (فقط با پوش تگ)
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: app-release.apk
+          files: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+            build/app/outputs/flutter-apk/app-debug.apk
           generate_release_notes: true

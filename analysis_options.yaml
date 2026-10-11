@@ -1,7 +1,8 @@
 include: package:flutter_lints/flutter.yaml
 
-analyzer:
-  exclude:
-    # فایل‌های تست تولیدشده توسط `flutter create` در CI به MyApp ارجاع می‌دهند
-    # و جزیی از سورس پروژه نیستند؛ از تحلیل خارج می‌شوند.
-    - test/**
+linter:
+  rules:
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+    avoid_print: true
+    use_key_in_widget_constructors: true

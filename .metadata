@@ -1,0 +1,12 @@
+# This file tracks properties of this Flutter project.
+# Used by Flutter tool to assess capabilities and perform upgrades.
+project_type: app
+
+tracks:
+  - file_path: android
+
+migration:
+  platforms:
+    - platform: root
+      create_revision: 3.24.3
+      base_revision: 3.24.3
