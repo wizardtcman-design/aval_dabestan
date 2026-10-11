@@ -125,6 +125,7 @@ class _WritingPracticeState extends State<WritingPractice> {
                       accent: widget.accent,
                       strokes: _strokes,
                       active: _active,
+                      bands: _bands,
                     ),
                   ),
                 );
@@ -217,23 +218,25 @@ class _TracingPainter extends CustomPainter {
   final Color accent;
   final List<List<Offset>> strokes;
   final List<Offset> active;
+  final int bands;
 
   _TracingPainter({
     required this.char,
     required this.accent,
     required this.strokes,
     required this.active,
+    this.bands = 3,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    final bandH = size.height / _bands;
+    final bandH = size.height / bands;
 
     // ---------- خطوط نقطه‌چین هر باند ----------
     final dashPaint = Paint()
       ..color = AppColors.textSoft.withOpacity(0.45)
       ..strokeWidth = 1.6;
-    for (var b = 0; b < _bands; b++) {
+    for (var b = 0; b < bands; b++) {
       final top = b * bandH;
       final bottom = (b + 1) * bandH;
       _dashedLine(canvas, Offset(12, top + 4), Offset(size.width - 12, top + 4),
@@ -248,7 +251,7 @@ class _TracingPainter extends CustomPainter {
       ..color = AppColors.textSoft.withOpacity(0.55)
       ..strokeWidth = 2.2
       ..strokeCap = StrokeCap.round;
-    for (var b = 0; b < _bands; b++) {
+    for (var b = 0; b < bands; b++) {
       final cy = b * bandH + bandH / 2;
       final start = Offset(24, cy);
       final end = Offset(52, cy);
@@ -258,7 +261,7 @@ class _TracingPainter extends CustomPainter {
     }
 
     // ---------- حرف شبح در هر خط ----------
-    for (var b = 0; b < _bands; b++) {
+    for (var b = 0; b < bands; b++) {
       final tp = TextPainter(
         text: TextSpan(
           text: char,

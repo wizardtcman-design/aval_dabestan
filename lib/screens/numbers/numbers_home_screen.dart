@@ -419,7 +419,7 @@ class _BundleCount extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.mint, width: 1.6),
       ),
-      child: const Text('🍎' * 10, style: TextStyle(fontSize: 12, height: 1.1)),
+      child: Text('🍎' * 10, style: const TextStyle(fontSize: 12, height: 1.1)),
     );
   }
 

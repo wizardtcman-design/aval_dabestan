@@ -25,7 +25,8 @@ dependencies:
   just_audio: ^0.9.40
 
   # گویندهٔ متنی سیستم (پشتیبان صوت‌های ضبط‌شده)
-  flutter_tts: ^4.0.2
+  # نسخه دقیق: 4.2.5 با Kotlin 2.2 ساخته شده و با Kotlin 1.8.22 پروژه ناسازگار است
+  flutter_tts: 3.8.5
 
   cupertino_icons: ^1.0.8
 

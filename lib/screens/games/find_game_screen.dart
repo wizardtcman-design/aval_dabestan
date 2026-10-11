@@ -7,6 +7,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/services/audio_service.dart';
 import '../../core/utils/persian_numbers.dart';
 import '../../state/settings_provider.dart';
+import '../../widgets/buttons.dart';
 import '../../widgets/confetti.dart';
 import 'game_common.dart';
 
